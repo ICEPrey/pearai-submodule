@@ -71,7 +71,7 @@ function resolveSerializedConfig(filepath: string): SerializedContinueConfig {
   // Replace "pearai-server" with "pearai_server" at the beginning
   // This is to make v0.0.3 backwards compatible with v0.0.2
   content = content.replace(/"pearai-server"/g, '"pearai_server"');
-  
+
   const config = JSONC.parse(content) as unknown as SerializedContinueConfig;
   if (config.env && Array.isArray(config.env)) {
     const env = {
@@ -535,15 +535,18 @@ function getTarget() {
 }
 
 function escapeSpacesInPath(p: string): string {
-  return p.split("").map(char => {
-    if (char === " ") {
-      return "\\ ";
-    } else if (char === "\\") {
-      return "\\\\";
-    } else {
-      return char;
-    }
-  }).join("");
+  return p
+    .split("")
+    .map((char) => {
+      if (char === " ") {
+        return "\\ ";
+      } else if (char === "\\") {
+        return "\\\\";
+      } else {
+        return char;
+      }
+    })
+    .join("");
 }
 
 async function buildConfigTs() {
