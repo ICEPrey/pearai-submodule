@@ -358,6 +358,16 @@ async function intermediateToFinalConfig(
               config.systemMessage,
             );
 
+          if (llm instanceof PearAIServer) {
+            llm.getCredentials = async () => {
+              return await ide.getPearAuth();
+            };
+
+            llm.setCredentials = async (auth: PearAuth) => {
+              await ide.updatePearCredentials(auth);
+            };
+          }
+
             // if (llm?.providerName === "free-trial") {
             //   if (!allowFreeTrial) {
             //     // This shouldn't happen
@@ -475,11 +485,12 @@ function finalToBrowserConfig(
   return {
     allowAnonymousTelemetry: final.allowAnonymousTelemetry,
     models: final.models.map((m) => ({
+      title: m.title ?? m.model,
       provider: m.providerName,
       model: m.model,
-      title: m.title ?? m.model,
       apiKey: m.apiKey,
       apiBase: m.apiBase,
+      refreshToken: m.refreshToken,
       contextLength: m.contextLength,
       template: m.template,
       completionOptions: m.completionOptions,

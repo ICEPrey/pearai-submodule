@@ -189,6 +189,12 @@
         "group": "PearAI"
       },
       {
+        "command": "pearai.openPearAiWelcome",
+        "category": "PearAI",
+        "title": "Open Welcome page for PearAI",
+        "group": "PearAI"
+      },
+      {
         "command": "pearai.toggleTabAutocompleteEnabled",
         "category": "PearAI",
         "title": "Toggle Autocomplete Enabled",
@@ -302,13 +308,13 @@
     "keybindings": [
       {
         "command": "pearai.focusContinueInput",
-        "mac": "cmd+l",
-        "key": "ctrl+l"
+        "mac": "cmd+shift+l",
+        "key": "ctrl+shift+l"
       },
       {
         "command": "pearai.focusContinueInputWithoutClear",
-        "mac": "cmd+shift+l",
-        "key": "ctrl+shift+l"
+        "mac": "cmd+l",
+        "key": "ctrl+l"
       },
       {
         "command": "pearai.toggleAuxiliaryBar",

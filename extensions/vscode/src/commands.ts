@@ -26,6 +26,7 @@ import { VerticalPerLineDiffManager } from "./diff/verticalPerLine/manager";
 import { QuickEdit, QuickEditShowParams } from "./quickEdit/QuickEditQuickPick";
 import { Battery } from "./util/battery";
 import type { VsCodeWebviewProtocol } from "./webviewProtocol";
+import { getExtensionUri } from "./util/vscode";
 
 let fullScreenPanel: vscode.WebviewPanel | undefined;
 
@@ -223,6 +224,14 @@ const commandsMap: (
   }
 
   return {
+    "pearai.openPearAiWelcome": async () => {
+      vscode.commands.executeCommand(
+        "markdown.showPreview",
+        vscode.Uri.file(
+          path.join(getExtensionUri().fsPath, "media", "welcome.md"),
+        ),
+      );
+    },
     "pearai.acceptDiff": async (newFilepath?: string | vscode.Uri) => {
       captureCommandTelemetry("acceptDiff");
 
@@ -732,9 +741,8 @@ const commandsMap: (
 
       extensionContext.secrets.store("pearai-token", data.accessToken);
       extensionContext.secrets.store("pearai-refresh", data.refreshToken);
-
       sidebar.setLoginStatus(true);
-
+      sidebar.webviewProtocol?.request("addPearAIModel", undefined);
       vscode.window.showInformationMessage("PearAI: Successfully logged in!");
     },
     "pearai.closeChat": () => {
