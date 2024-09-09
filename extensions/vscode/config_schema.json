@@ -1413,6 +1413,7 @@
           "anyOf": [
             {
               "enum": [
+                "beginner",
                 "diff",
                 "terminal",
                 "locals",

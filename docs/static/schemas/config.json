@@ -1413,6 +1413,7 @@
           "anyOf": [
             {
               "enum": [
+                "beginner",
                 "diff",
                 "terminal",
                 "locals",
@@ -2257,7 +2258,7 @@
         "tabAutocompleteOptions": {
           "title": "TabAutocompleteOptions",
           "type": "object",
-          "markdownDescription": "These options let you customize your tab-autocomplete experience. Read about all options in [the docs](https://trypear.ai/docs/tab-autocomplete).",
+          "markdownDescription": "These options let you customize your tab-autocomplete experience. Read about all options in [the docs](https://trypear.ai/docs/tab-autocomplete#configuration-options).",
           "properties": {
             "disable": {
               "type": "boolean",
